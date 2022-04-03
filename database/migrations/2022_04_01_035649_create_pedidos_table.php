@@ -15,15 +15,13 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha')->nullable();
-            $table->foreignId('id_usuario')->references('id')->on('users')->cascadeOnDelete();
-            $table->string('name');
-            $table->foreignId('id_producto')->references('id')->on('products')->cascadeOnDelete();
-            $table->double('piezas_Unidad');
-            $table->double('cantidad');
-            $table->double('precio');
-            $table->double('total');
-            $table->double('total_venta');
+            $table->date('date')->nullable();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('client_id')->nullable();
+            $table->enum('status', [1, 2, 3])->default('1');
+            $table->double('total')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

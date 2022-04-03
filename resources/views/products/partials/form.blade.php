@@ -1,11 +1,18 @@
 @section('style')
-   <style>
+    <style>
         .wholesale-price-show {
             display: none;
         }
 
     </style>
-@endsection 
+@endsection
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css"
+        integrity="sha512-3g+prZHHfmnvE1HBLwUnVuunaPOob7dpksI7/v6UnF/rnKGwHf/GdEq9K7iEN7qTtW+S0iivTcGpeTBqqB04wA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
+
+
 <div class="modal fade" id="createProduct" tabindex="-1" aria-labelledby="createUserLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -14,11 +21,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+                 <form  action="{{ route('product.store') }}" method="post" enctype="multipart/form-data" action="/file-upload" class="dropzone">
+                {{--<form action="/file-upload" class="dropzone"> --}}
                     @csrf
-                    <div class="form-group has-success" >
+                    <div class="form-group has-success">
                         <label for="form-label mt-4" for="inputValid">Codigo</label>
-                        <input required type="text" class="form-control" name="code" value="{{ old('code')}}">
+                        <input required type="text" class="form-control" name="code" value="{{ old('code') }}">
                     </div>
                     <div class="form-group has-success">
                         <label for="form-label mt-4" for="inputValid">Nombre</label>
@@ -37,7 +45,7 @@
                         <input required type="text" class="form-control" name="description"
                             value="{{ old('description') }}">
                     </div>
-     
+
                     <div class="form-group">
                         <label>Proveedor</label>
                         <select required class="form-control" name="provider_id" value="{{ old('provider_id') }}">
@@ -47,10 +55,8 @@
                             @endforeach
                         </select>
                     </div>
-                   
-                    </div>
-                    <div class="custom-file mt-5">
-                        <input type="file" class="custom-file-input" accept="image/*" name="photo">
+                    <div class="w-100" id="my-awewome-dropzone">
+
                     </div>
                     <div class="form-group mt-5">
                         <button class="btn btn-primary w-100">
@@ -62,3 +68,54 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js">
+    </script>
+
+    <script>
+Dropzone.options.myAwesomeDropzone = {
+            headers:{
+                'X-CSRF-TOKEN' : "{{csrf_token()}}"
+            },
+
+            dictDefaultMessage: "Arrastre una imagen  para subirlo",
+            acceptedFiles: "image/*",
+            maxFiles: 4,
+            paramName: 'photo'
+        };
+        </script>
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

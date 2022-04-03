@@ -22,6 +22,7 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Apellido</th>
+                    <th></th>
                     <th>Correo</th>
                     <th>Role</th>
                     <th colspan="2">Acciones</th>

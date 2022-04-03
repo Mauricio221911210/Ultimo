@@ -8,14 +8,14 @@
             <div class="row h-100">
                 <div class="col-lg-6 col-sm-12 p-md-5 p-3">
                         <h1 class="text-center">Iniciar Sesion</h1>
-                        <hr class="text-info">
+                        <hr class="text-success">
                         <div class="row align-items-center">
                             <form method="post" action="" class="border-sm p-lg-5 p-sm-3 h-sm-100">
                             @csrf
                                 <div class="form-group">
                                     <label class="text-center w-100 mb-lg-3">Nombre de Usuario</label>
-                                    <input class="form-control"  name="username" value="{{ old('username') }}">
-                                    {!! $errors->first('username', '<small class="text-danger" >:message</small>') !!}
+                                    <input class="form-control"  name="username" value="{{ old('name') }}">
+                                    {!! $errors->first('name', '<small class="text-danger" >:message</small>') !!}
 
                                 </div>
                                 <div class="form-group">
@@ -23,16 +23,11 @@
                                     <input type="password" class="form-control" name="password"><br>
                                     {!! $errors->first('password', '<small class="text-danger" >:message</small>') !!}
                                 </div>
-                                <button type="submit" class="btn btn-info w-100">Iniciar Sesión</button>
+                                <button type="submit" class="btn btn-success w-100">Iniciar Sesión</button>
                             </form>
                         </div>
                 </div>
-                <div class="col-lg-6 bg-login" id="slogan">
-                    <div class="container w-100 h-100 row align-items-center m-auto">
-                        <div class="row justify-content-center">
-                            <img src="{{ asset('./img/imagotipo.png')}}" alt="joduma_logotipo" class="img-login">
-                        </div>
-                    </div>
+                
                 </div>
             </div>
         </div>

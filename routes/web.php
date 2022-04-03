@@ -47,6 +47,12 @@ Route::get('/products{product}', [ProductController::class, 'edit'])->name('prod
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update');
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
+//Pedidos
+
+
+//Reportes
+Route::get('order/report/{order}', [PedidoController::class, 'orderReport'] )->name('order.report');
+
 //Informacion Empresa 
 Route::get('/want', function () {return view('want');})->name('Informacion');
 

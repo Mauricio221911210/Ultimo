@@ -14,25 +14,26 @@ class PedidoController extends Controller
 {
     public function index()
     {
-        return view('pedidos.index',compact('pedidos'));
+        $pedidos = Pedido::all();
+        return view('sales.index', compact('sales'));
     }
 
     public function store(Request $request)
     {
         $pedido = Pedido::create([
             'user_id' => auth()->user()->id,
-            'fecha' => date('Y-m-d'),
+            'date' => date('Y-m-d'),
         ]);
 
-        return redirect()->route('pedido.show', compact('pedido'));
+        return redirect()->route('sales.show', compact('sale'));
     }
 
     public function show(Pedido $pedido)
     {
-        $$users = User::all();
-        $products = Product::Where('status','1')->get();
-        $temporary = TemporatyPedido::where('status','0')->get();
-        return view('pedido.show', compact('clients','products', 'pedido'));
+       
+        $products = Product::orderBy('id', 'desc')->get();
+        $temporary = TemporatyPedido::where('status', '0')->get();
+        return view('sales.show', compact('clients', 'products', 'temporary', 'sale'));
     }
 
     public function destroy($temporary)
@@ -42,14 +43,12 @@ class PedidoController extends Controller
         $product->update(['stock' => $product->stock + $temporary->quantity]);
         $temporary->delete();
         return back();
-
-
     }
 
-    public function temporaryProduct(Request $request, Pedido $pedido, Product $product)
+    public function temporaryProduct(Request $request, Pedido $pedido,  Product $product)
     {
         if ($product->wholesale_price > 0 && $request->quantity >= $product->wholesale_quantity) {
-            $total = $request->quantity * $product->whole_price;
+            $total = $request->quantity * $product->wholesale_price;
         } else {
             $total = $request->quantity * $product->price;
         }
@@ -64,27 +63,42 @@ class PedidoController extends Controller
         $product->update(['stock' => $product->stock - $request->quantity]);
 
         return back();
-
     }
 
-    public function newPedido(Request $request, Pedido $pedido)
+    public function newSale(Request $request, Pedido $pedido)
     {
         $total = 0;
-        $temporaries = TemporatyPedido::Where('pedido_id', $pedido->id);
-        
-        foreach ($temporaries as $key => $temporary){
+        $temporaries = TemporatyPedido::Where('sale_id', $pedido->id)
+            ->where('status', '0')
+            ->get();
+        foreach ($temporaries as $key => $temporary) {
             $total += $temporary->total;
-           
+            $temporary->update(['status' => '1']);
         }
         $pedido->update([
-            'total' =>$total
+            'status' => '2',
+            'total' => $total
         ]);
-        return redirect()->route('pedidos.index');
-
+        return redirect()->route('store')->with('success','Venta realizada con exito!');
     }
 
-    public function pedidoDelete(Pedido $pedido)
+    public function addClient(Request $request, Pedido $pedido)
     {
-       return back();
+        $pedido->update(['client_id' => $request->client]);
+        return back();
+    }
+
+    public function saleDelete(Pedido $pedido)
+    {
+        $pedido->update(['status' => '3']);
+        return back();
+    }
+
+    public function saleReport(Pedido $pedido)
+    {
+        $details = $pedido->TemporarySale;
+        $pdf = \PDF::loadView('pdf.sale-index', compact('sale', 'details'))->setPaper('commercial #10 envelope', 'landscape');
+        // $pdf = \PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->loadview('pdf.sale-index', compact('sale', 'details'));
+        return $pdf->stream('sale.pdf');
     }
 }

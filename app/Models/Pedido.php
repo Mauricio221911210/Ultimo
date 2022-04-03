@@ -19,4 +19,43 @@ class Pedido extends Model
     {
         return $this->hasMany(TemporatyPedido::class);
     }
+
+    public function getGetStatusTypeAttribute(){
+        if ($this->status == "1") {
+            return "Pendiente";
+        }elseif ($this->status == "2") {
+            return "Completada";
+        } elseif ($this->status == "3") {
+            return "Cancelada";
+        }
+    }
+
+    public function getGetClientNameAttribute()
+    {
+        if ($this->client) {
+            return $this->client->name . " " . $this->client->lastname;
+        } else {
+            return "Anonimo";
+        }
+    }
+
+    public function getGetStatusClassAttribute()
+    {
+        if ($this->status == "1") {
+            return "warning";
+        }elseif ($this->status == "2") {
+            return "success";
+        } elseif ($this->status == "3") {
+            return "danger";
+        }
+    }
+
+    public function getGetTotalAttribute()
+    {
+        if ($this->total === null || $this->total === 0) {
+            return "0";
+        }
+
+        return $this->total;
+    }
 }

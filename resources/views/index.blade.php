@@ -4,14 +4,28 @@
 <div class="row justify-content-center mw-100">
     <div class="col col-sm-4 col-md-6 col-lg-3">
         <a class="nav-link" href="{{ route('user.index') }}">
-            <div class="card text-white text-center bg-danger on-hover-expand-card">
+            <div class="card text-white text-center border-danger on-hover-expand-card">
                 <div class="card-body">
                     <div>
                         <i class="bi bi-person-square text-white"></i>
                     </div>
 
-                    <h5 class="card-title text-white fw-bold">Clientes</h5>
-                    <h6 class="card-subtitle text-white fw-bold">{{ $users->count() }}</h6>
+                    <h5 class="card-title text-black fw-bold">Clientes</h5>
+                    <h6 class="card-subtitle text-black fw-bold">{{ $users->count() }}</h6>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col col-sm-4 col-md-6 col-lg-3">
+        <a class="nav-link" href="{{ route('product.index') }}">
+            <div class="card text-center border-info on-hover-expand-card">
+                <div class="card-body">
+                    <div>
+                        <i class="bi bi-basket text-white"></i>
+                    </div>
+                    <h5 class="card-title border-success fw-bold">Productos</h5>
+                    <h6 class="card-subtitle border-success fw-bold">{{$products->count() }}</h6>
                 </div>
             </div>
         </a>
@@ -19,30 +33,18 @@
    
     <div class="col col-sm-4 col-md-6 col-lg-3">
         <a class="nav-link"  href="{{ route('provider.index') }}">
-            <div class="card text-center bg-warning on-hover-expand-card">
+            <div class="card text-center border-warning on-hover-expand-card">
                 <div class="card-body">
                     <div>
                         <i class="bi bi-truck text-white"></i>
                     </div>
-                    <h5 class="card-title text-white fw-bold">Proveedores</h5>
-                    <h6 class="card-subtitle text-white fw-bold">{{ $providers->count()}}</h6>
+                    <h5 class="card-title text-black fw-bold">Proveedores</h5>
+                    <h6 class="card-subtitle text-black fw-bold">{{ $providers->count()}}</h6>
                 </div>
             </div>
         </a>
     </div>
-    <div class="col col-sm-4 col-md-6 col-lg-3">
-        <a class="nav-link" href="{{ route('product.index') }}">
-            <div class="card text-center bg-info on-hover-expand-card">
-                <div class="card-body">
-                    <div>
-                        <i class="bi bi-basket text-white"></i>
-                    </div>
-                    <h5 class="card-title text-white fw-bold">Productos</h5>
-                    <h6 class="card-subtitle text-white fw-bold">{{$products->count() }}</h6>
-                </div>
-            </div>
-        </a>
-    </div>
+   
 </div>
 
 
@@ -51,7 +53,7 @@
 <div class="col-12 p-3 border me-3 overflow-auto">
     <div class="row products-container">
         @forelse ($products as $product)
-        <div class="col-lg-12 bg-light py-1 px-2 mb-1 border border-secondary">
+        <div class="col-lg-12 border-success py-1 px-2 mb-1 border border-secondary">
             <div class="row justify-content-between align-items-center">
 
                 <div class="col-lg-2 col-xl-1 col-2 col-md-2">
@@ -61,7 +63,6 @@
                     <img src="{{ asset('img/product/product.png') }}" alt="product-image" class="w-100 rounded-circle">
                     @endif
                 </div>
-
                 <div class="col-lg-12 col-xl-8 col-12 text-center">
                     <div class="row">
                         <div class="col">
@@ -76,6 +77,11 @@
                                     <p class="text-success">
                                         <i class="bi bi-shop"></i>
                                         ${{ $product->precio }}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="fw-bold">
+                                        {{ $product->description }}
                                     </p>
                                 </div>
                                 @if($product->wholesale)
@@ -99,20 +105,29 @@
                                     [ver más]
                                 </a>
                             </p>
+                            <p class="">
+                                <button class="btn btn-success " >Hacer Pedido</button>
+
+                            </p>
                             <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="detailProduct{{$product->id}}" aria-labelledby="offcanvasExampleLabel">
                                 <div class="offcanvas-header w-100 d-block">
                                     <h5 class="fs-6 fw-bold text-center" id="offcanvasExampleLabel">
                                         <span class="fst-italic d-block text-secondary mb-2">
                                            $ {{ $product->precio }} Precio del Producto
                                         </span>
+                                    
                                         <span class="fst-italic d-block text-secondary mb-2">
                                             {{ $product->stock }} Disponible(s)
                                           
                                         </span>
-                                        
-                                        <span>
-                                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                        <span class="fst-italic d-block text-secondary mb-2">
+                                            {{ $product->code}} Codigo del Producto
                                         </span>
+                                        <span class="fst-italic d-block text-secondary mb-2">
+                                            <button class="btn btn-success">Agregar</button>
+                                        </span>
+                                        
+                            
                                     </h5>
                                 </div>
                                 <div class="offcanvas-body text-center border-2 border-dark border-top">
@@ -168,13 +183,13 @@
             id: 1,
                   nombre: 'Patata',
                   precio: 1,
-                  imagen: 'patata.jpg'
+                  imagen: 'product.png'
                 },
                 {
-                    id: 1,
+                    id: 2,
                   nombre: 'Patata',
-                  precio: 1,
-                  imagen: 'patata.jpg'
+                  precio: 10,
+                  imagen: 'product.png'
                 }
          ];
 
@@ -324,7 +339,8 @@
 
      </script>
 
-     <div class="container">
+     
+<div class="container">
          <div class="row"> 
              <!-- Elementos generados a partir  del Json -->
              <main id="items" class="col-sm-8 row"></main>
@@ -335,7 +351,7 @@
                  <ul id="carrito" class="lis-group"></ul>
                  <hr>
                  <!-- Precio total  -->
-                 <p class="text-rigth">TOTAL: <span id="total"></span> &Pesos</p>
+                 <p class="text-rigth">TOTAL: <span id="total"></span> $</p>
                  <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
              </aside>
          </div>

@@ -49,7 +49,7 @@ class ProductController extends Controller
         
 
         // ]);
-        return redirect()->route('home')->with('success','El Producto se creo con exito');
+        // return redirect()->route('home')->with('success','El Producto se creo con exito');
     }
 
     public function edit(Product $product)
