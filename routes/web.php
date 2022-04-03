@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Route::get('/home', [SystemController::class, 'index'])->name('home');
 
 
