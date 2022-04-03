@@ -182,7 +182,7 @@
                 miNodoPrecio.textContent = `${info.precio}${divisa}`;
                 // Boton
                 const miNodoBoton = document.createElement('button');
-                miNodoBoton.classList.add('btn'm 'btn-primary');
+                miNodoBoton.classList.add('btn', 'btn-primary');
                 miNodoBoton.textContent = '+';
                 miNodoBoton.setAttribute('marcador', info.id);
                 miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
