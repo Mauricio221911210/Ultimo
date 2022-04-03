@@ -1,51 +1,6 @@
 @extends('layout.index')
 
 @section('content')
-<div class="row justify-content-center mw-100">
-    <div class="col col-sm-4 col-md-6 col-lg-3">
-        <a class="nav-link" href="{{ route('user.index') }}">
-            <div class="card text-white text-center border-danger on-hover-expand-card">
-                <div class="card-body">
-                    <div>
-                        <i class="bi bi-person-square text-white"></i>
-                    </div>
-
-                    <h5 class="card-title text-black fw-bold">Clientes</h5>
-                    <h6 class="card-subtitle text-black fw-bold">{{ $users->count() }}</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-
-    <div class="col col-sm-4 col-md-6 col-lg-3">
-        <a class="nav-link" href="{{ route('product.index') }}">
-            <div class="card text-center border-info on-hover-expand-card">
-                <div class="card-body">
-                    <div>
-                        <i class="bi bi-basket text-white"></i>
-                    </div>
-                    <h5 class="card-title border-success fw-bold">Productos</h5>
-                    <h6 class="card-subtitle border-success fw-bold">{{$products->count() }}</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-   
-    <div class="col col-sm-4 col-md-6 col-lg-3">
-        <a class="nav-link"  href="{{ route('provider.index') }}">
-            <div class="card text-center border-warning on-hover-expand-card">
-                <div class="card-body">
-                    <div>
-                        <i class="bi bi-truck text-white"></i>
-                    </div>
-                    <h5 class="card-title text-black fw-bold">Proveedores</h5>
-                    <h6 class="card-subtitle text-black fw-bold">{{ $providers->count()}}</h6>
-                </div>
-            </div>
-        </a>
-    </div>
-   
-</div>
 
 
 
@@ -72,7 +27,7 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                               
+
                                 <div class="col-lg-4">
                                     <p class="text-success">
                                         <i class="bi bi-shop"></i>
@@ -92,7 +47,7 @@
                                     </p>
                                 </div>
                                 @else
-                                
+
                                 @endif
                             </div>
                         </div>
@@ -115,10 +70,10 @@
                                         <span class="fst-italic d-block text-secondary mb-2">
                                            $ {{ $product->precio }} Precio del Producto
                                         </span>
-                                    
+
                                         <span class="fst-italic d-block text-secondary mb-2">
                                             {{ $product->stock }} Disponible(s)
-                                          
+
                                         </span>
                                         <span class="fst-italic d-block text-secondary mb-2">
                                             {{ $product->code}} Codigo del Producto
@@ -126,8 +81,8 @@
                                         <span class="fst-italic d-block text-secondary mb-2">
                                             <button class="btn btn-success">Agregar</button>
                                         </span>
-                                        
-                            
+
+
                                     </h5>
                                 </div>
                                 <div class="offcanvas-body text-center border-2 border-dark border-top">
@@ -146,8 +101,8 @@
                                             <p>{{ $product->description }}</p>
                                         </div>
                                     </div>
-                                   
-                                   
+
+
                                 </div>
                             </div>
                         </div>
@@ -159,7 +114,7 @@
                     </div>
                 </div>
 
-               
+
 
             </div>
         </div>
@@ -206,7 +161,7 @@
          function renderizarProductos() {
              baseDeDatos.forEach((info) => {
 
-                //Estructura 
+                //Estructura
                 const miNodo = document.createElement('div');
                 miNodo.classList.add('card', 'col-sm-4');
 
@@ -225,13 +180,13 @@
                 const miNodoPrecio = document.createElement('p');
                 miNodoPrecio.classList.add('card-text');
                 miNodoPrecio.textContent = `${info.precio}${divisa}`;
-                // Boton 
+                // Boton
                 const miNodoBoton = document.createElement('button');
-                miNodoBoton.classList.add('btn'm 'btn-primary');
+                miNodoBoton.classList.add('btn', 'btn-primary');
                 miNodoBoton.textContent = '+';
                 miNodoBoton.setAttribute('marcador', info.id);
                 miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
-                // Insertamos 
+                // Insertamos
                 miNodoCardBody.appendChild(miNodoImagen);
                 miNodoCardBody.appendChild(miNodoTitle);
                 miNodoCardBody.appendChild(miNodoPrecio);
@@ -239,11 +194,11 @@
                 miNodo.appendChild(miNodoCardBody);
                 DOMitems.appendChild(miNodo);
 
-               
+
              });
          }
 
-         // Evento para añadir un producto  al carrito de la compra 
+         // Evento para añadir un producto  al carrito de la compra
 
          function anyadirProductoAlCarrito(Evento) {
              // Ayadimos el Nodo a nuestro carrito
@@ -251,15 +206,15 @@
              // Actualizamos el carrito
              renderizarCarrito();
          }
-         // Dibujo todos los productos guardados en el carrito 
+         // Dibujo todos los productos guardados en el carrito
          function renderizarCarrito() {
              // Vaciamos todo el html
              DOMcarrito.textContent = '';
-             //Quitamos los duplicados 
+             //Quitamos los duplicados
              const carritoSinDuplicados = [...new set(carrito)];
              // Generamos los Nodos a partir de carrito
              carritoSinDuplicados.forEach((item) => {
-                 // Obtenemos el item que necesitamos de la variable base de datos 
+                 // Obtenemos el item que necesitamos de la variable base de datos
                  const miItem = baseDeDatos.filter((itemBaseDatos) => {
                      // ¿Coincide las id? Solo puede existir un caso
                      return itemBaseDatos.id === parseInt(item);
@@ -268,9 +223,9 @@
                  // Cuenta el número de veces que se repite el producto
                  const nunmeroUnidadesItem = carrito.reduce((total, itemId) => {
                     // ¿Coincide las id? Incrementando el contador, en caso contrario no mantengo
-                    return itemId === item ? total += 1 : total; 
+                    return itemId === item ? total += 1 : total;
                  }, 0);
-                 // Creamos el nodo del item del carrito 
+                 // Creamos el nodo del item del carrito
                  const miNodo = document.createElement('li');
                  miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
                  miNodo.textContent = `${nunmeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
@@ -282,7 +237,7 @@
                  miBoton.style.marginLeft = '1rem';
                  miBoton.dataset.item = item;
                  miBoton.addEventListener('click', borrarItemCarrito);
-                 // Mezclamos nodos 
+                 // Mezclamos nodos
                  miNodo.appendChild(miBoton);
                  DOMcarrito.appendChild(miNodo);
              });
@@ -298,16 +253,16 @@
                  carrito = carrito.filter((carritoId) => {
                      return carritoId !== id;
                  });
-                 // volvemos a renderizar 
+                 // volvemos a renderizar
                  renderizarCarrito();
              }
 
              //Calcula el precio total teniendo en cuenta los productos repetidos
 
              function calcularTotal() {
-                 // Recorremos el array del carrito 
+                 // Recorremos el array del carrito
                  return carrito.reduce((total, item) => {
-                     // De cada elemento obtenemos su precio 
+                     // De cada elemento obtenemos su precio
                      const miItem = baseDeDatos.filter((itemBaseDatos) => {
                          return itemBaseDatos.id === parseInt(item);
                      });
@@ -316,12 +271,12 @@
                  }, 0).toFixed(2);
              }
 
-             //Varia el carrito  y vuelve a dibujarlo 
+             //Varia el carrito  y vuelve a dibujarlo
 
              function vaciarCarrito() {
-                 //Limpios los productos guardados 
+                 //Limpios los productos guardados
                  carrito = [];
-                 // Renderizamos los cambios 
+                 // Renderizamos los cambios
                  renderizarCarrito();
              }
 
@@ -331,7 +286,7 @@
              renderizarProductos();
              renderizarCarrito();
 
-            
+
 
 
        });
@@ -339,9 +294,9 @@
 
      </script>
 
-     
+
 <div class="container">
-         <div class="row"> 
+         <div class="row">
              <!-- Elementos generados a partir  del Json -->
              <main id="items" class="col-sm-8 row"></main>
              <!-- Carrito  -->
