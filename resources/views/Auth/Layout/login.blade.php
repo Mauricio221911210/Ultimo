@@ -21,7 +21,6 @@
 
 
 </head>
-@include('layout.navbar')
 <body>
     @yield('content')
 

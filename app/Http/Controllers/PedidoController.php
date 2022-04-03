@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
 use App\Models\Product;
 use App\Models\Pedido;
 use App\Models\TemporatyPedido;
@@ -30,7 +29,7 @@ class PedidoController extends Controller
 
     public function show(Pedido $pedido)
     {
-       
+
         $products = Product::orderBy('id', 'desc')->get();
         $temporary = TemporatyPedido::where('status', '0')->get();
         return view('sales.show', compact('clients', 'products', 'temporary', 'sale'));
