@@ -15,12 +15,12 @@ class UserController extends Controller
         $roles = Role::all();
         return view('users.index', compact('users','roles'));
     }
-   
-    
+
+
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'name' =>'required',
             'lastname' => 'required',
@@ -28,7 +28,7 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        
+
         User::create([
             'name' => $request->name,
             'lastname' => $request->lastname,
@@ -51,14 +51,14 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'name' =>'required',
-            'lastname' => 'required',
-            'role_id' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        
+        // $request->validate([
+        //     'name' =>'required',
+        //     'lastname' => 'required',
+        //     'role_id' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        // ]);
+
         $user->update($request->all());
         return redirect()->route('user.index')->with('success', 'El usuario se actualizo con exito');
 

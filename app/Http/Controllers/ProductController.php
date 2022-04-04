@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'code' => 'required',
             'name' => 'required',
@@ -27,9 +27,9 @@ class ProductController extends Controller
             'precio' => 'required',
             'description' => 'required',
             'provider_id' => 'required',
-            
+
         ]);
-      
+
         $product = new Product ($request->except('photo'));
 
         if($request->hasFile('photo'))
@@ -37,44 +37,31 @@ class ProductController extends Controller
             $product->photo = $request->file('photo')->store("products",'public');
         }
         $product->save();
-          
-       // Product::create([
-         //   'name' => $request->name,
-           // 'stock' => $request->stock,
-       //     'precio' => $request->precio,
-        //    'description' => $request->description,
-         //   'provider_id' => $request->provider_id,
-        //    'photo' => $request->photo,
 
-        
-
-        // ]);
-        // return redirect()->route('home')->with('success','El Producto se creo con exito');
+        return redirect()->route('home')->with('success','El Producto se creo con exito');
     }
 
     public function edit(Product $product)
     {
         $providers=Provider::all();
-        
+
         return view('products.edit', compact('product','providers'));
 
     }
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
-            'code' => 'required',
-            'name' => 'required',
-            'stock' => 'required',
-            'precio' => 'required',
-            'description' => 'required',
-            'provider_id' => 'required',
-            
-        ]);
-
-        
+        // $request->validate([
+        //     'code' => 'required',
+        //     'name' => 'required',
+        //     'stock' => 'required',
+        //     'precio' => 'required',
+        //     'description' => 'required',
+        //     'provider_id' => 'required',
+        // ]);
 
         $product->update($request->except('photo'));
+
         return redirect()->route('product.index')->with('success', 'El Producto se actualizo con exito');
 
     }

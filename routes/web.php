@@ -42,7 +42,7 @@ Route::resource('provider', ProviderController::class)->parameters(['provide' =>
 //Products
 Route::get('/products', [ProductController::class, 'index'])->name('product.index')->middleware(['auth', 'admin']);
 Route::post('/products/store', [ProductController::class, 'store'])->name('product.store')->middleware(['auth', 'admin']);
-Route::get('/products{product}', [ProductController::class, 'edit'])->name('product.edit')->middleware(['auth', 'admin']);
+Route::get('/products/{product}', [ProductController::class, 'edit'])->name('product.edit')->middleware(['auth', 'admin']);
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update')->middleware(['auth', 'admin']);
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware(['auth', 'admin']);
 
