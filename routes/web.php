@@ -26,6 +26,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/authenticate', [AuthController::class, 'authentication'])->name('authenticate');
 
+
+
 Route::get('/home', [SystemController::class, 'index'])->name('home');
 
 
