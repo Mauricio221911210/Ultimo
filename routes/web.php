@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\SystemController;
@@ -21,9 +22,10 @@ use App\Models\Pedido;
 |
 */
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('welcome');
-})->name('login');
+})->name('login')->middleware('guest');;
+
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/authenticate', [AuthController::class, 'authentication'])->name('authenticate');
@@ -60,3 +62,6 @@ Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'
 //Informacion Empresa
 Route::get('/want', function () {return view('want');})->name('Informacion');
 
+
+
+Route::get('/getProducts', [CarritoController::class, 'getProducts'])->name('get-products');

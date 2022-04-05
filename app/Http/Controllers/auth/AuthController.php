@@ -13,7 +13,6 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
-
     public function authentication(Request $request)
     {
         $credentials = $request->validate([
@@ -23,14 +22,16 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('Informacion');
+            return redirect()->route('product.index');
         }
         return redirect()->route('login');
-    }   
+    }
 
     public function logout()
     {
-        Auth::logout();
+        if (Auth::check()) {
+            request()->session()->flush();
+        }
 
         return redirect()->route('login');
     }

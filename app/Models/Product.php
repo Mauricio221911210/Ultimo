@@ -44,7 +44,7 @@ class Product extends Model
     public function getGetPhotoAttribute()
     {
         if( $this->photo){
-            return url("Storage/$this->photo");
+            return url("storage/$this->photo");
         }
     }
 }
