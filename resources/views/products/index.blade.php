@@ -21,7 +21,7 @@
             <thead class="table-dark">
                 <tr>
                     <th>Nombre</th>
-
+                    <th>Codigo</th>
                     <th>Precio</th>
                     <th> Existencias </th>
                     <th>Detalle</th>
@@ -35,6 +35,7 @@
                 @forelse ($products as $product)
                     <tr>
                         <td>{{ $product->name }}</td>
+                        <td>{{ $product->code}}</td>
                         <td>{{ $product->precio }}</td>
                         <td> {{ $product->stock}}</td>
                         <td>{{ $product->description }}</td>
@@ -44,7 +45,7 @@
                         @if($product->photo)
                         <img src="{{Storage::url($product->photo)}}"  class="w-25  border-rounded">
                         @else
-                        <img src="{{ asset('img/product/product.png') }}" alt="product-image" class="w-25  border-rounded" >
+                        <img src="{{ asset('img/product/vacia.png') }}" alt="product-image" class="w-25  border-rounded" >
                         @endif
                         
                      </td>

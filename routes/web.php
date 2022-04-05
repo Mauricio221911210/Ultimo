@@ -7,6 +7,8 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
+use App\Models\Pedido;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +53,9 @@ Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'
 //Pedidos
 
 
+
+
 //Reportes
-Route::get('order/report/{order}', [PedidoController::class, 'orderReport'] )->name('order.report')->middleware(['auth', 'admin']);
 
 //Informacion Empresa
 Route::get('/want', function () {return view('want');})->name('Informacion');

@@ -11,7 +11,7 @@
                     <a class="nav-link" href="{{ route('product.index') }}">Productos</a>
                     @endif
                     @if(Auth::user()->role_id == 2)
-                    <a class="nav-link" href="">Pedidos</a>
+                    <a class="nav-link" href=""></a>
                     @endif
                     <a class="nav-link" href="{{ route('home') }}"> Home </a>
                     @if(Auth::user()->role_id == 2)

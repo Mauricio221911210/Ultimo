@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Provider;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -51,6 +52,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
+    
         // $request->validate([
         //     'code' => 'required',
         //     'name' => 'required',
@@ -58,10 +60,17 @@ class ProductController extends Controller
         //     'precio' => 'required',
         //     'description' => 'required',
         //     'provider_id' => 'required',
-        // ]);
+        // ]); 
+
+        if ($request->hasFile('photo')) {
+            Storage::disk('public')->delete($product->photo);
+            $product->photo = $request->file('photo')->store('products', 'public');
+        }
+
 
         $product->update($request->except('photo'));
 
+        
         return redirect()->route('product.index')->with('success', 'El Producto se actualizo con exito');
 
     }

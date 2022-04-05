@@ -11,7 +11,7 @@
 <hr>
 
 <section class="container-fluid">
-    <form action="{{ route('product.update', $product) }}" method="post">
+    <form action="{{ route('product.update', $product) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('put')
         <div class="form-group has-success">
@@ -41,7 +41,7 @@
             </select>
         </div>
 
-
+    
         <div>
             <p>Imagen</p>
             <img src=" {{ Storage::url($product->photo) }}" width="150px">

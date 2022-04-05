@@ -15,11 +15,11 @@ class SystemController extends Controller
     public function index ()
     {
     $users = User::all();
-     $pedidos = Pedido::all();
+     //$pedidos = Pedido::all();
      $products = Product::all();
      $roles= Role::all();
      $providers = Provider::all();
 
-     return view('index', compact('users','pedidos','products','roles','providers'));
+     return view('index', compact('users','products','roles','providers'));
     }
 }

@@ -2,7 +2,7 @@
 <style>
     .wholesale-price-show {
         display: none;
-    }
+    }   
 </style>
 @endsection
 
@@ -46,7 +46,7 @@
                             <option value="{{ $provider->id }}">{{ $provider->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> <br>
 
                     <div class="form-group">
                         <input type="file" name="photo" id="image">
