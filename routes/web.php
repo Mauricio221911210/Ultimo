@@ -24,6 +24,7 @@ use App\Models\Pedido;
 Route::get('/login', function () {
     return view('welcome');
 })->name('login');
+
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/authenticate', [AuthController::class, 'authentication'])->name('authenticate');
@@ -50,12 +51,6 @@ Route::get('/products/{product}', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update')->middleware(['auth', 'admin']);
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware(['auth', 'admin']);
 
-//Pedidos
-
-
-
-
-//Reportes
 
 //Informacion Empresa
 Route::get('/want', function () {return view('want');})->name('Informacion');
