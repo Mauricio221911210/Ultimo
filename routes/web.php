@@ -52,12 +52,6 @@ Route::get('/products/{product}', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update')->middleware(['auth', 'admin']);
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware(['auth', 'admin']);
 
-//Pedidos
-
-
-
-
-//Reportes
 
 //Informacion Empresa
 Route::get('/want', function () {return view('want');})->name('Informacion');
