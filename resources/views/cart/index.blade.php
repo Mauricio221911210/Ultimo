@@ -36,9 +36,11 @@
 
         <div class="d-flex flex-row-reverse">
             @if ($cart->count() > 0)
+            <form action="{{route('home' ) }}" >
                 <button class="btn btn-warning">
                     Finalizar compra
                 </button>
+            </form>
             @endif
         </div>
     </div>

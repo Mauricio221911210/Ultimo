@@ -19,6 +19,7 @@
                     @if (Auth::user()->role_id == 2)
                         <a class="nav-link" href="{{ route('provider.index') }}">Proveedor</a>
                         <a class="nav-link" href="{{ route('user.index') }}">Clientes</a>
+                        <a class="nav-link" href="">Compras</a>
                     @endif
                     <li class="nav-item">
                         <span class="nav-link">{{ Auth::user()->name }}</span>

@@ -47,6 +47,9 @@ class CarritoController extends Controller
         return back();
     }
 
+    
+    
+
     public function myCart()
     {
         $user = auth()->user();
