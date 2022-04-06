@@ -19,7 +19,7 @@ class Product extends Model
         'photo',
 
 
-     
+
     ];
 
     protected $guarded = ['id'];
@@ -27,7 +27,6 @@ class Product extends Model
     public function provider()
     {
         return $this->belongsTo(Provider::class);
-
     }
 
     public function user()
@@ -38,13 +37,25 @@ class Product extends Model
     public function getGetDetalleAttribute()
     {
         return substr($this->detalle, 0, 65);
-
     }
 
     public function getGetPhotoAttribute()
     {
-        if( $this->photo){
+        if ($this->photo) {
             return url("storage/$this->photo");
         }
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function getGetStatusProductAttribute()
+    {
+        if ($this->stock > 0) {
+            return 'Disponible: ' . $this->stock;
+        }
+        return 'No disponible';
     }
 }

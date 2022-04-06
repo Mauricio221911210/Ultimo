@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const DOMcarrito = d.querySelector('#carrito');
     const DOMtotal = d.querySelector('#total');
     const DOMbotonVaciar = d.querySelector('#boton-vaciar');
+    const DOMbtnSave = d.querySelector('#save-sale');
 
     const fetchData = (endpoint, data, method = 'GET') => {
 
@@ -165,9 +166,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         renderizarCarrito();
     }
 
+    const saveSale = async () => {
+        const cart = localStorage.getItem('cart');
+        const data = JSON.stringify(cart)
+        const res = await fetchData('/saveSale', data, 'POST');
+    }
+
     // Eventos
     DOMbotonVaciar.addEventListener('click', vaciarCarrito);
-
+    DOMbtnSave.addEventListener('click', saveSale);
 
     renderizarProductos();
     renderizarCarrito();

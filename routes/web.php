@@ -39,7 +39,7 @@ Route::get('/home', [SystemController::class, 'index'])->name('home');
 Route::get('/users', [UserController::class, 'index'])->name('user.index')->middleware(['auth', 'admin']);
 Route::post('/users/store', [UserController::class, 'store'])->name('user.store')->middleware(['auth', 'admin']);
 Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware(['auth', 'admin']);
-Route::put('/users/{user}/update',[UserController::class, 'update'])->name('user.update')->middleware(['auth', 'admin']);
+Route::put('/users/{user}/update', [UserController::class, 'update'])->name('user.update')->middleware(['auth', 'admin']);
 Route::delete('/users/delete/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['auth', 'admin']);
 
 //Providers
@@ -52,10 +52,12 @@ Route::get('/products/{product}', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update')->middleware(['auth', 'admin']);
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware(['auth', 'admin']);
 
-
 //Informacion Empresa
-Route::get('/want', function () {return view('want');})->name('Informacion');
+Route::get('/want', function () {
+    return view('want');
+})->name('Informacion');
 
-
-
-Route::get('/getProducts', [CarritoController::class, 'getProducts'])->name('get-products');
+//Carrito
+Route::post('/añadir-carrito/{product}', [CarritoController::class, 'addToCart'])->name('cart.add');
+Route::get('my-cart', [CarritoController::class, 'myCart'])->name('cart');
+Route::delete('/delete-product/{product}', [CarritoController::class, 'deleteProductFromCart'])->name('cart.delete');
