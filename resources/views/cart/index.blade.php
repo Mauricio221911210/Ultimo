@@ -1,6 +1,9 @@
 @extends('layout.index')
 
 @section('content')
+@php
+    $total = 0;
+@endphp
     <div class="container my-5">
         <h2 class="text-center my-5">Mi carrito</h2>
         <table class="table">
@@ -21,7 +24,7 @@
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $item->product->name }}</td>
                         <td>{{ $item->quantity }}</td>
-                        <td>{{ $item->total }}</td>
+                        <td>${{ $item->total }}</td>
                         <td>
                             <form action="{{ route('cart.delete', $item->product) }}" method="post">
                                 @csrf
@@ -30,18 +33,30 @@
                             </form>
                         </td>
                     </tr>
+                    @php
+                        $total += ($item->quantity * $item->total);
+                    @endphp
                 @endforeach
             </tbody>
         </table>
 
-        <div class="d-flex flex-row-reverse">
+        <div class="row">
             @if ($cart->count() > 0)
-            <form action="{{route('home' ) }}" >
-                <button class="btn btn-warning">
-                    Finalizar compra
-                </button>
-            </form>
+            <div class="col-sm-10">
+                <input hidden type="text" name="subtotal" value="{{ $total }}">
+                <p class="text-end mt-3"><span class="fw-bold fs-5">Total: </span>${{ $total }}</p>
+            </div>
+            <div class="col-sm-2">
+                <form action="{{ route('pedidos.store') }}" >
+                    <button class="btn btn-warning">
+                        Finalizar compra
+                    </button>
+                </form>
+            </div>
             @endif
+        </div>
+
+        <div class="row g-3">
         </div>
     </div>
 @endsection

@@ -22,7 +22,7 @@ class PedidoController extends Controller
 
         $productex=Pedido::where("usuario_id",Auth::user()->id)->where("nombre",$request->nombre)->exists();
         if($productex){
-            
+
            return redirect()->back()->withErrors(['msg' => 'El producto '.$request->nombre.' ya esta en el carrito']);
         }else{
         $carrito=new Pedido;
@@ -35,14 +35,14 @@ class PedidoController extends Controller
         return back();
 
         }
-    
- 
+
+
    }
 
    public function showCarrito(){
-       
+
        $status=count(Pedido::all()->where("usuario_id",Auth::user()->id));
-           
+
        $carrito=Auth::user()->carrito;
        $sumtotal=DB::table("carrito")->where("usuario_id",Auth::user()->id)
                  ->sum("carrito.total");
@@ -50,17 +50,21 @@ class PedidoController extends Controller
    }
 
    public function detallePedido(Request $request){
-      
-       
-     
-    dd($request->all());
-       
 
-   
+
+
+    dd($request->all());
+
+
+
    }
    public function eliminar(Pedido $id){
        $id->delete();
        return back();
 
+   }
+
+   public function store(Request $request){
+        dd($request);
    }
 }

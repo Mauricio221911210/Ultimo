@@ -15,13 +15,9 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->float("precio");
-            $table->integer("cantidad");
+            $table->longText("productos");
             $table->float("total");
-            $table->unsignedBigInteger("user_id");
             $table->timestamps();
-            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
