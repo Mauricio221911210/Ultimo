@@ -22,7 +22,7 @@
                                 <label class="text-center w-100 mt-lg-3">Contraseña</label>
                                 <input type="password" class="form-control" name="password"><br>
                                 {!! $errors->first('password', '<small class="text-danger">:message</small>') !!}
-                            </div>
+                            </div> 
                             <button type="submit" class="btn btn-success w-100">Iniciar Sesión</button>
                         </form>
                     </div>

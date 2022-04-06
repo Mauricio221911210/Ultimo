@@ -1,21 +1,21 @@
 document.addEventListener('DOMContentLoaded', (event) => {
 
     const dataInLocalStorage = () => {
-        const getCart = localStorage.getItem('cart');
+        const getCart = localStorage.getItem('cart'); 
 
-        const cart = JSON.parse(getCart);
-
+        const cart = JSON.parse(getCart); 
+ 
         if (!cart) {
-            localStorage.setItem('cart', '[]');
+            localStorage.setItem('cart', '[]'); 
         }
     }
 
-    dataInLocalStorage();
+    dataInLocalStorage(); 
 
-    const d = document;
+    const d = document; 
 
-    const divisa = '$';
-    const DOMitems = d.querySelector('#items');
+    const divisa = '$'; 
+    const DOMitems = d.querySelector('#items'); 
     const DOMcarrito = d.querySelector('#carrito');
     const DOMtotal = d.querySelector('#total');
     const DOMbotonVaciar = d.querySelector('#boton-vaciar');
@@ -138,7 +138,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Imagen
             const miNodoImagen = document.createElement('img');
             miNodoImagen.classList.add('img-fluid');
+             
             miNodoImagen.setAttribute('src', `http://localhost:8000/storage/${info.photo}`);
+
             // Precio
             const miNodoPrecio = document.createElement('p');
             miNodoPrecio.classList.add('card-text');
