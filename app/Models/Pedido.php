@@ -10,17 +10,8 @@ class Pedido extends Model
     use HasFactory;
 
 
-    protected $table="carrito";
-    protected $fillable=[
-        "nombre",
-        "precio",
-        "cantidad",
-        "total",
-        "user_id",
-
-    ];
-
-    public function Usuario(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

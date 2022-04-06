@@ -52,7 +52,6 @@ Route::get('/products/{product}', [ProductController::class, 'edit'])->name('pro
 Route::put('/products/{product}/update', [ProductController::class, 'update'])->name('product.update')->middleware(['auth', 'admin']);
 Route::delete('/products/delete/{product}', [ProductController::class, 'destroy'])->name('product.destroy')->middleware(['auth', 'admin']);
 
-Route::resource('pedidos', PedidoController::class)->only('index', 'store');
 
 //Informacion Empresa
 Route::get('/want', function () {
@@ -64,6 +63,3 @@ Route::post('/añadir-carrito/{product}', [CarritoController::class, 'addToCart'
 Route::get('my-cart', [CarritoController::class, 'myCart'])->name('cart');
 Route::delete('/delete-product/{product}', [CarritoController::class, 'deleteProductFromCart'])->name('cart.delete');
 
-
-Route::post('/new-carrito/{product}', [CarritoController::class, 'newSale'])->name('cart.new');
-Route::get('cart', [CarritoController::class, 'Cart'])->name('car');

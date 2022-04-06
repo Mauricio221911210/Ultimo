@@ -47,7 +47,7 @@
                 <p class="text-end mt-3"><span class="fw-bold fs-5">Total: </span>${{ $total }}</p>
             </div>
             <div class="col-sm-2">
-                <form action="{{ route('pedidos.store') }}" >
+                <form action=" " method="" >
                     <button class="btn btn-warning">
                         Finalizar compra
                     </button>

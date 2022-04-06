@@ -13,58 +13,33 @@ use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
-    public function addCarrito(Request $request){
+    public function index()
+    {
+        $pedido = Pedido::all();
+        return view('pedidos.index', compact('pedidos'));
+    }
+
+    public function store(Request $request)
+    {
+        $pedido = Pedido::create([
+            'user_id' => auth()->user()->id,
+            'date' => date('Y-m-d'),
+        ]);
+
+        return redirect()->route('pedidos.show', compact('pedido'));
+    }
+
+    public function show(Pedido $pedido)
+    {
+        
+        $products = Product::Where('status', '1')->get();
+       
+        return view('pedidos.show', compact( 'products', 'sale'));
+    }
 
 
 
-        $values=$request->all();
+   
+   
 
-
-        $productex=Pedido::where("usuario_id",Auth::user()->id)->where("nombre",$request->nombre)->exists();
-        if($productex){
-
-           return redirect()->back()->withErrors(['msg' => 'El producto '.$request->nombre.' ya esta en el carrito']);
-        }else{
-        $carrito=new Pedido;
-        $carrito->name=$request->name;
-        $carrito->precio=$request->precio;
-        $carrito->cantidad=$request->cantidad;
-        $carrito->total=$request->total;
-        $carrito->user_id=Auth::user()->id;
-        $carrito->save();
-        return back();
-
-        }
-
-
-   }
-
-   public function showCarrito(){
-
-       $status=count(Pedido::all()->where("usuario_id",Auth::user()->id));
-
-       $carrito=Auth::user()->carrito;
-       $sumtotal=DB::table("carrito")->where("usuario_id",Auth::user()->id)
-                 ->sum("carrito.total");
-       return view("index")->with("carrito",$carrito)->with("sumtotal",$sumtotal)->with("status",$status);
-   }
-
-   public function detallePedido(Request $request){
-
-
-
-    dd($request->all());
-
-
-
-   }
-   public function eliminar(Pedido $id){
-       $id->delete();
-       return back();
-
-   }
-
-   public function store(Request $request){
-        dd($request);
-   }
 }
