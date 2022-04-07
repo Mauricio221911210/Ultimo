@@ -63,3 +63,5 @@ Route::post('/añadir-carrito/{product}', [CarritoController::class, 'addToCart'
 Route::get('my-cart', [CarritoController::class, 'myCart'])->name('cart');
 Route::delete('/delete-product/{product}', [CarritoController::class, 'deleteProductFromCart'])->name('cart.delete');
 
+//pedidos
+Route::resource('pedidos', PedidoController::class)->only(['index', 'store']);

@@ -15,9 +15,8 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->date('date')->nullable();
-            $table->foreignId('user_id')->nullable();
-            $table->double('total')->nullable();
+            $table->longText('productos');
+            $table->float('total');
             $table->timestamps();
         });
     }

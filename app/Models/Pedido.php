@@ -9,6 +9,14 @@ class Pedido extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'productos',
+        'total'
+    ];
+
+    protected $attributes = [
+        'total' => 0
+    ];
 
     public function user()
     {

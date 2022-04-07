@@ -43,12 +43,15 @@
         <div class="row">
             @if ($cart->count() > 0)
             <div class="col-sm-10">
-                <input hidden type="text" name="subtotal" value="{{ $total }}">
                 <p class="text-end mt-3"><span class="fw-bold fs-5">Total: </span>${{ $total }}</p>
             </div>
             <div class="col-sm-2">
-                <form action=" " method="" >
-                    <button class="btn btn-warning">
+                <form action="{{ route('pedidos.store') }}" method="POST">
+                    @csrf
+                    @method('POST')
+                    <input type="hidden" name="productos" value="{{ $cart }}">
+                    <input type="hidden" name="total" value="{{ $total }}">
+                    <button type="submit" class="btn btn-warning">
                         Finalizar compra
                     </button>
                 </form>

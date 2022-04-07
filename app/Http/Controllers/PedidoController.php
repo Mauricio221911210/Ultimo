@@ -15,18 +15,20 @@ class PedidoController extends Controller
 {
     public function index()
     {
-        $pedido = Pedido::all();
+        $pedidos = Pedido::all();
         return view('pedidos.index', compact('pedidos'));
     }
 
     public function store(Request $request)
     {
-        $pedido = Pedido::create([
-            'user_id' => auth()->user()->id,
-            'date' => date('Y-m-d'),
-        ]);
+        $pedido = new Pedido;
 
-        return redirect()->route('pedidos.show', compact('pedido'));
+        $pedido->total = $request->total;
+        $pedido->productos = $request->productos;
+
+        $pedido->save();
+
+        return redirect()->route('pedidos.index');
     }
 
     public function show(Pedido $pedido)
