@@ -15,7 +15,7 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->longText('productos');
+            $table->longText('products');
             $table->float('total');
             $table->timestamps();
         });
