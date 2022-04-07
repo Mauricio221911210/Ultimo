@@ -24,7 +24,7 @@ class PedidoController extends Controller
         $pedido = new Pedido;
 
         $pedido->total = $request->total;
-        $pedido->productos = $request->productos;
+        $pedido->products = $request->products;
 
         $pedido->save();
 
@@ -33,15 +33,15 @@ class PedidoController extends Controller
 
     public function show(Pedido $pedido)
     {
-        
+
         $products = Product::Where('status', '1')->get();
-       
+
         return view('pedidos.show', compact( 'products', 'sale'));
     }
 
 
 
-   
-   
+
+
 
 }

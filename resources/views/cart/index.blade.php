@@ -49,7 +49,7 @@
                 <form action="{{ route('pedidos.store') }}" method="POST">
                     @csrf
                     @method('POST')
-                    <input type="hidden" name="productos" value="{{ $cart }}">
+                    <input type="hidden" name="products" value="{{ $cart }}">
                     <input type="hidden" name="total" value="{{ $total }}">
                     <button type="submit" class="btn btn-warning">
                         Finalizar compra
