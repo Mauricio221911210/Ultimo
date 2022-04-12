@@ -21,20 +21,17 @@
             <tr>
             <td>{{$pedido->id}}</td>
             <td>{{$pedido->total}}</td>
-            <td>{{$pedido->created_at}}    </td>
+            <td>{{$pedido->created_at}}</td>
+          
         </tr>
-           {{-- <p>{{ $pedido->total }}</p> 
-            @php
-            foreach(array($pedido->products)as$key=>$productsArray){
-                foreach(json_decode($productsArray,true)as$key=>$products){
-                  @endphp
-                    @foreach($products as $product)
-                    {{$product['name']}}
-                    @endforeach
-                  @php
-                }
-            }
-            @endphp--}}
+          <p>{{ $pedido->total }}</p> 
+            
+            @foreach (json_decode($pedido->products) as $item)
+                {{json_encode($item)}}
+            @endforeach
+            
+
+            
             @endforeach
 
             

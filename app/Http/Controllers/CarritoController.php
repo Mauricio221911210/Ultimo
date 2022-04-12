@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -70,5 +71,11 @@ class CarritoController extends Controller
             return back();
         }
 
+    }
+
+
+    public function getInfoAdmin(){
+        $sales = Sale::all();
+        return view('admin', compact('sales'));
     }
 }

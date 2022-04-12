@@ -20,6 +20,7 @@ class CreateCartsTable extends Migration
             $table->double('total');
             $table->enum('status', [0, 1])->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('sale_id')->nullable();
             $table->timestamps();
         });
     }

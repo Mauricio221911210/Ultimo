@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Pedido;
+use App\Models\Sale;
 use App\Models\TemporatyPedido;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,18 +17,27 @@ class PedidoController extends Controller
 {
     public function index()
     {
-        $pedidos = Pedido::all();
+        $pedidos = Pedido::Where('user_id ');
         return view('pedidos.index', compact('pedidos'));
     }
 
     public function store(Request $request)
     {
-        $pedido = new Pedido;
+        $user = auth()->user();
+        $carts = Cart::where('user_id', $user->id)->where('status', '0')->get();
 
-        $pedido->total = $request->total;
-        $pedido->products = $request->products;
+        $final_price = $carts->sum(function($product){
+            return $product->sum('total');
+        });
 
-        $pedido->save();
+        $sale = Sale::create([
+            'user_id' => $user->id,
+            'final_price' => $final_price,
+        ]);
+
+        foreach ($carts as $key => $cart) {
+            $cart->update(['sale_id' => $sale->id, 'status' => '1']);
+        }
 
         return redirect()->route('pedidos.index');
     }
@@ -38,9 +49,6 @@ class PedidoController extends Controller
 
         return view('pedidos.show', compact( 'products', 'sale'));
     }
-
-
-
 
 
 

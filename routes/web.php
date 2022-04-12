@@ -65,3 +65,5 @@ Route::delete('/delete-product/{product}', [CarritoController::class, 'deletePro
 
 //pedidos
 Route::resource('pedidos', PedidoController::class)->only(['index', 'store']);
+
+Route::get('admin', [CarritoController::class, 'getInfoAdmin'])->name('admin');
