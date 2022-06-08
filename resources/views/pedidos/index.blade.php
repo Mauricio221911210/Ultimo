@@ -4,17 +4,17 @@
 @section('content')
     <div class="container my-5">
         <h2 class="text-center my-5">Mi Compras</h2>
+
+    <div class="table-responsive">
         <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Precio</th>
-                    {{--<th scope="col">cantidad</th>--}}
-                    <th scope="col"> Fecha</th>
-               
-                    
-                </tr>
-            </thead>
+                    <thead class="table-dark">
+                        <tr>
+                          <th scope="col">id</th>
+                          <th scope="col">Precio</th>
+                          {{--<th scope="col">cantidad</th>--}}
+                          <th scope="col"> Fecha</th>
+                        </tr>
+                   </thead>
             <tbody>
                 
             @foreach($pedidos as $pedido)
@@ -38,7 +38,7 @@
          
 
             </tbody>
-        </table>
-
+         </table>
+       </div>
     </div>
 @endsection

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container my-5">
-        <h2 class="text-center my-5">Productos</h2>
+        <h2 class="text-center my-5">BIENVENIDO  {{ Auth::user()->name }}</h2>
         <div class="row  ">
             @foreach ($products as $product)
                 <div class="col-sm-12 col-md-6 col-lg-4">
