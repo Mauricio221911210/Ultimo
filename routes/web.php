@@ -8,7 +8,12 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\SystemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\ContactanosController;
 use App\Models\Pedido;
+use App\Http\Controllers\MailController;
+use App\Mail\ContactanosMailable;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 
 /*
@@ -67,3 +72,11 @@ Route::delete('/delete-product/{product}', [CarritoController::class, 'deletePro
 Route::resource('pedidos', PedidoController::class)->only(['index', 'store']);
 
 Route::get('admin', [CarritoController::class, 'getInfoAdmin'])->name('admin');
+
+//emails
+
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+
+
+Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
+
