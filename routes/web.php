@@ -77,6 +77,7 @@ Route::get('admin', [CarritoController::class, 'getInfoAdmin'])->name('admin');
 
 Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
 
-
 Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
+
+
 

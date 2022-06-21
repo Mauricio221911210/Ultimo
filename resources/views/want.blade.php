@@ -209,31 +209,82 @@
           ¡No dude en ponerse en contacto!
           </p>
           <!-- start contact form -->
+        
           <div class="cform" id="contact-form">
 
 
-            <div id="sendmessage">Tu mensaje a sido enviado. Gracias!</div>
+            {{--<div id="sendmessage">Tu mensaje a sido enviado. Gracias!</div>
             <div id="errormessage"></div>
-            <form action="" method="post" role="form" class="contactForm">
+            <form action="{{route('contactanos.store')}}" method="POST" role="form" class="contactForm">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
+                <input type="email" class="form-control" name="correo" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
                 <div class="validation"></div>
               </div>
-              <div class="form-group">
+              {{--<div class="form-group">
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
                 <div class="validation"></div>
-              </div>
+              </div> -->
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Message"></textarea>
+                <textarea class="form-control" name="mensaje" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Message"></textarea>
                 <div class="validation"></div>
               </div>
 
               <div class="text-center"><button type="submit" class="btn btn-lg btn-danger">Enviar mensaje</button></div>
-            </form>
+            </form>--}}
+
+            <form action="{{route('contactanos.store')}}" method="POST">
+              @csrf
+              <label class="input-group-text">
+              Nombre:
+              <br>
+              <input type="text" name="name">
+          </label>
+          <br>
+      
+          @error('name')
+          <p><strong>{{$message}}</strong></p>
+          @enderror
+      
+      
+          <label>
+              Correo
+              <br>
+              <input type="text" name="correo" class="input-group-text" >
+          </label>
+          <br>
+      
+          @error('correo')
+          <p><strong>{{$message}}</strong></p>
+          @enderror
+      
+          <label>
+              Mensaje:
+              <br>
+              <textarea name="mensaje" rows="4"></textarea>
+          </label>
+          <br>
+         
+          @error('mensaje')
+          <p><strong>{{$message}}</strong></p>
+          @enderror
+      
+      
+          <button type="submit">Enviar Mensaje</button>
+          </form>
+      
+      
+          @if (session('info'))
+          <script>
+              alert("{{session('info')}}");
+          </script>
+          @endif
+
+
+
           </div>
           <!-- END contact form -->
         </div>
@@ -269,11 +320,11 @@
           <div class="col-md-12">
             <div class="aligncenter">
               <p>
-                &copy; ProOnliPc Theme - All right reserved
+                &copy; Frefrigel 2021-2022
               </p>
               <div class="credits">
              
-                <a href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">ProOnliPc Themes</a> by <a href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">ProOnliPc</a>
+                <a href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">Frefrigel 2021-2022</a> by <a href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">ProOnliPc</a>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@
 
     <form action="{{route('contactanos.store')}}" method="POST">
         @csrf
-        <label>
+        <label class="input-group-text">
         Nombre:
         <br>
         <input type="text" name="name">
@@ -25,7 +25,7 @@
     <label>
         Correo
         <br>
-        <input type="text" name="correo" >
+        <input type="text" name="correo" class="input-group-text" >
     </label>
     <br>
 
