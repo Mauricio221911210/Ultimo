@@ -56,7 +56,7 @@
   <section id="intro">
     <ul id="slippry-slider">
       <li>
-        <a href="#slide1"><img src="img/slide/1.jpg" alt="Bienvenidos a FEFRIGEL"></a>
+        <a href="#slide1"><img src="img/slide/1.jpeg" ></a>
       </li>
       <li>
         <a href="#slide2"><img src="img/slide/2.jpg"  alt="Gran variedad de dulces"></a>
@@ -161,23 +161,23 @@
         <div class="col-md-12">
           <ul class="grid effect" id="grid">
             <li>
-              <a class="fancybox" data-fancybox-group="gallery" title="Cocadas" href="img/portfolio/1.jpg">
-								<img src="img/portfolio/1.jpg" alt="" />
+              <a class="fancybox" data-fancybox-group="gallery" title="Cocadas" href="img/portfolio/1.jpeg">
+								<img src="img/portfolio/1.jpeg" alt="" />
 							</a>
             </li>
-            <li><a href="img/portfolio/2.jpg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo"><img src="img/portfolio/2.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/3.jpg" class="fancybox" data-fancybox-group="gallery" title="Gomitas de mango"><img src="img/portfolio/3.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/2.jpeg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo"><img src="img/portfolio/2.jpeg" alt="" /></a></li>
+            <li><a href="img/portfolio/3.jpeg" class="fancybox" data-fancybox-group="gallery" title="Gomitas de mango"><img src="img/portfolio/3.jpeg" alt="" /></a></li>
             <li><a href="img/portfolio/4.jpg" class="fancybox" data-fancybox-group="gallery" title="Gomitas de dulce"><img src="img/portfolio/4.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/5.jpg" class="fancybox" data-fancybox-group="gallery" title="Popotes de tamarindo"><img src="img/portfolio/5.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/5.jpeg" class="fancybox" data-fancybox-group="gallery" title="Popotes de tamarindo"><img src="img/portfolio/5.jpeg" alt="" /></a></li>
             <li><a href="img/portfolio/6.jpg" class="fancybox" data-fancybox-group="gallery" title="Velitas"><img src="img/portfolio/6.jpg" alt="" /></a></li>
             <li><a href="img/portfolio/7.jpg" class="fancybox" data-fancybox-group="gallery" title="Velitas"><img src="img/portfolio/7.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/8.jpg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo"><img src="img/portfolio/8.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/8.jpeg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo"><img src="img/portfolio/8.jpeg" alt="" /></a></li>
             <li><a href="img/portfolio/9.jpg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo en vaso"><img src="img/portfolio/9.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/10.jpg" class="fancybox" data-fancybox-group="gallery" title="Gomitas"><img src="img/portfolio/10.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/10.jpeg" class="fancybox" data-fancybox-group="gallery" title="Gomitas"><img src="img/portfolio/10.jpeg" alt="" /></a></li>
             <li><a href="img/portfolio/11.jpg" class="fancybox" data-fancybox-group="gallery" title="Aguitas"><img src="img/portfolio/11.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/12.jpg" class="fancybox" data-fancybox-group="gallery" title="Gomitas"><img src="img/portfolio/12.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/12.jpeg" class="fancybox" data-fancybox-group="gallery" title="Gomitas"><img src="img/portfolio/12.jpeg" alt="" /></a></li>
             <li><a href="img/portfolio/13.jpg" class="fancybox" data-fancybox-group="gallery" title="Paleta de tamarindo"><img src="img/portfolio/13.jpg" alt="" /></a></li>
-            <li><a href="img/portfolio/14.jpg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo en popote"><img src="img/portfolio/14.jpg" alt="" /></a></li>
+            <li><a href="img/portfolio/14.jpeg" class="fancybox" data-fancybox-group="gallery" title="Tamarindo en popote"><img src="img/portfolio/14.jpeg" alt="" /></a></li>
           </ul>
         </div>
       </div>
@@ -208,75 +208,55 @@
           <p>
           ¡No dude en ponerse en contacto!
           </p>
-          <!-- start contact form -->
-        
-          <div class="cform" id="contact-form">
-
-
-            {{--<div id="sendmessage">Tu mensaje a sido enviado. Gracias!</div>
-            <div id="errormessage"></div>
-            <form action="{{route('contactanos.store')}}" method="POST" role="form" class="contactForm">
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" name="correo" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-              {{--<div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validation"></div>
-              </div> -->
-              <div class="form-group">
-                <textarea class="form-control" name="mensaje" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Message"></textarea>
-                <div class="validation"></div>
-              </div>
-
-              <div class="text-center"><button type="submit" class="btn btn-lg btn-danger">Enviar mensaje</button></div>
-            </form>--}}
-
-            <form action="{{route('contactanos.store')}}" method="POST">
-              @csrf
-              <label class="input-group-text">
-              Nombre:
-              <br>
-              <input type="text" name="name">
-          </label>
-          <br>
+  <!-- start contact form -->
       
+            {{--<div id="sendmessage">Tu mensaje a sido enviado. Gracias!</div>
+                  <div id="errormessage"></div>
+                  <form action="{{route('contactanos.store')}}" method="POST" role="form" class="contactForm">
+                <div class="form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" name="correo" id="email" placeholder="Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validation"></div>
+                </div>
+            {{--<div class="form-group">
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                  <div class="validation"></div>
+                </div> -->
+                <div class="form-group">
+                 <textarea class="form-control" name="mensaje" rows="5" data-rule="required" data-msg="Por favor escribe algo para nosotros" placeholder="Message"></textarea>
+                 <div class="validation"></div>
+                 </div>
+                <div class="text-center"><button type="submit" class="btn btn-lg btn-danger">Enviar mensaje</button></div>
+                 </form>--}}
+         <!------>
+         <div class="cform" id="contact-form">
+         <form action="{{route('contactanos.store')}}" method="POST">
+              @csrf
+          <div class="form-group">
+              <label class="input-group-text"> Nombre:    </label>
+              <input type="text" name="name" class="form-control">
+          </div>
           @error('name')
           <p><strong>{{$message}}</strong></p>
           @enderror
-      
-      
-          <label>
-              Correo
-              <br>
-              <input type="text" name="correo" class="input-group-text" >
-          </label>
-          <br>
-      
+          <div class="form-group">
+          <label class="input-group-text"> Correo :  </label>
+          <input type="text" name="correo" class="form-control" >
           @error('correo')
           <p><strong>{{$message}}</strong></p>
           @enderror
-      
-          <label>
-              Mensaje:
-              <br>
-              <textarea name="mensaje" rows="4"></textarea>
-          </label>
-          <br>
-         
+          <div class="form-group">
+          <label class="input-group-text"> Mensaje: </label>
+          <textarea name="mensaje" rows="4" class="form-control" placeholder="Escribe algo para nosotros"></textarea>
+          </div>
           @error('mensaje')
           <p><strong>{{$message}}</strong></p>
           @enderror
-      
-      
-          <button type="submit">Enviar Mensaje</button>
+          <button type="submit" class="btn btn-danger">Enviar Mensaje</button>
           </form>
-      
-      
           @if (session('info'))
           <script>
               alert("{{session('info')}}");
@@ -284,22 +264,22 @@
           @endif
 
 
-
-          </div>
-          <!-- END contact form -->
-        </div>
-        <div class="col-md-6">
-          <h4>Localizacion</h4>
-          <p>Ver desde el mapa de Google</p>
-          <!-- map -->
-          <div id="section-map" class="clearfix">
+         </div>
+           <br>
+                  <!-- END contact form -->
+</div>
+      <div>
+                  <h4>Localizacion</h4>
+             <p>Ver desde el mapa de Google</p>
+                     <!-- map -->
+            <div id="section-map" class="clearfix">
             <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end section contact -->
+             </div>
+               </div>
+                  </div>
+                     </section>
+<!-- end section contact -->
   <footer>
     <div class="verybottom">
       <div class="container">
