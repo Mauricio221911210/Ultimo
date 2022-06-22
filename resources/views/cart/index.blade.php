@@ -1,6 +1,36 @@
 @extends('layout.index')
 
 @section('content')
+
+@php
+// SDK de Mercado Pago
+require base_path('vendor/autoload.php');
+// Agrega credenciales
+MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+// Crea un objeto de preferencia
+$preference = new MercadoPago\Preference();
+
+// Crea un ítem en la preferencia
+
+foreach ($items as $product) {
+    $item = new MercadoPago\Item();
+    $item->title = $product->name;
+    $item->quantity = $product->quantity;
+    $item->unit_price = $product->price;
+
+    $products[] = $item
+}
+
+
+
+$preference->items = $products;
+$preference->save();
+
+
+@endphp
+
+
 @php
     $total = 0;
 @endphp
@@ -51,9 +81,10 @@
                     @method('POST')
                     <input type="hidden" name="products" value="{{ $cart }}">
                     <input type="hidden" name="total" value="{{ $total }}">
-                    <button type="submit" class="btn btn-warning">
+                    {{--<button type="submit" class="btn btn-warning">
                         Finalizar compra
-                    </button>
+                    </button>--}}
+                    <div class="cho-container"></div>
                 </form>
             </div>
             @endif
@@ -62,4 +93,27 @@
         <div class="row g-3">
         </div>
     </div>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    
+    <script>
+        // Agrega credenciales de SDK
+        const mp = new MercadoPago("{{config('services.mercadopago.key')}}", {
+          locale: "es-AR",
+        });
+      
+        // Inicializa el checkout
+        mp.checkout({
+          preference: {
+            id: '{{ $preference->id }}',
+          },
+          render: {
+            container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
+            label: "Pagar", // Cambia el texto del botón de pago (opcional)
+          },
+        });
+      </script>
+  
+
 @endsection

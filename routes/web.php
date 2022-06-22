@@ -16,6 +16,7 @@ use App\Mail\TestMail;
 use Illuminate\Support\Facades\Mail;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,5 +80,10 @@ Route::get('contactanos', [ContactanosController::class, 'index'])->name('contac
 
 Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
+//excel
 
+//Route::get('/products/excel/post-export', [ProductController::class, 'export'])->name('post.excel');
 
+//Route::get('user-list-excel', 'ProductController@exportExcel')->name('users.excel');
+
+Route::get('/products/excel/post-export', [ProductController::class, 'exportExcel'])->name('users.excel');

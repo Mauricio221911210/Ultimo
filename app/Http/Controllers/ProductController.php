@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PostsExport;
+use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Storage;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -17,6 +19,16 @@ class ProductController extends Controller
         $providers = Provider::all();
         return view('products.index', compact('providers','products'));
     }
+
+    //public function export(){
+      //  return Excel::download(new PostsExport, 'posts.xlsx');
+    //}
+
+    public function exportExcel(){
+        return Excel::download(new UsersExport, 'user-list.xlsx');
+    }
+
+
 
     public function store(Request $request)
     {
