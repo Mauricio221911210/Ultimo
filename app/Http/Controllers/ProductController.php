@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Exports\PostsExport;
+use App\Exports\ProductsExport;
+use App\Exports\ProvidersExport;
 use App\Exports\UsersExport;
 use Illuminate\Http\Request;
 
@@ -26,6 +28,14 @@ class ProductController extends Controller
 
     public function exportExcel(){
         return Excel::download(new UsersExport, 'user-list.xlsx');
+    }
+
+    public function exportExcelP(){
+        return Excel::download(new ProductsExport, 'Product-list.xlsx');
+    }
+
+    public function exportExcelPr(){
+        return Excel::download(new ProvidersExport, 'Provider-list.xlsx');
     }
 
 

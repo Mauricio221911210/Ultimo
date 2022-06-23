@@ -16,7 +16,7 @@
         </button>
         @include('products.partials.form')
     </div>
-    <a class="bt btn-success mt-3 mb-3" href="{{ route('users.excel') }}">
+    <a class="bt btn-success mt-3 mb-3" href="{{ route('products.excel') }}">
         Exportar Tabla
     </a>
     <div>

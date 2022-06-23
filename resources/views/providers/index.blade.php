@@ -17,6 +17,9 @@
         @include('providers.partials.form')
     </div>
     <div>
+        <a class="bt btn-success mt-3 mb-3" href="{{ route('providers.excel') }}">
+            Exportar Tabla
+        </a>
         <table class="table">
             <thead class="table-dark">
                 <tr>

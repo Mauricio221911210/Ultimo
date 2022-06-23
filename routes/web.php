@@ -87,3 +87,7 @@ Route::post('contactanos', [ContactanosController::class, 'store'])->name('conta
 //Route::get('user-list-excel', 'ProductController@exportExcel')->name('users.excel');
 
 Route::get('/products/excel/post-export', [ProductController::class, 'exportExcel'])->name('users.excel');
+
+Route::get('/products/excel/product-export', [ProductController::class, 'exportExcelP'])->name('products.excel');
+
+Route::get('/products/excel/provider-export', [ProductController::class, 'exportExcelPr'])->name('providers.excel');

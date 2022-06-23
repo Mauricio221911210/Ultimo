@@ -16,6 +16,9 @@
         </button>
         @include('users.partials.form', ['roles'=>$roles])
     </div>
+     <a class="bt btn-success mt-3 mb-3" href="{{ route('users.excel') }}">
+        Exportar Tabla
+    </a>
     <div>
         <table class="table">
             <thead class="table-dark">
