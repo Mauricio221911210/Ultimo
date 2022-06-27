@@ -10,6 +10,12 @@ class Cart extends Model
     protected $guarded = ['id'];
     use HasFactory;
 
+
+    const PENDING = 1;
+    const APPROVED = 2;
+    const REJECT = 3;
+    
+
     public function product()
     {
         return $this->belongsTo(Product::class);

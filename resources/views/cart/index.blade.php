@@ -1,39 +1,48 @@
 @extends('layout.index')
 
 @section('content')
+    @php
+    // SDK de Mercado Pago
+    require base_path('vendor/autoload.php');
+    // Agrega credenciales
+    MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
 
-@php
-// SDK de Mercado Pago
-require base_path('vendor/autoload.php');
-// Agrega credenciales
-MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+    // Crea un objeto de preferencia
+    $preference = new MercadoPago\Preference();
 
-// Crea un objeto de preferencia
-$preference = new MercadoPago\Preference();
+    $shipments = new MercadoPago\Shipments();
 
-// Crea un ítem en la preferencia
+    // **************** Gastos de envío **********************
+    // $shipments->cost = 150;
+    // $shipments->mode = "not_specified";
 
-foreach ($items as $product) {
-    $item = new MercadoPago\Item();
-    $item->title = $product->name;
-    $item->quantity = $product->quantity;
-    $item->unit_price = $product->price;
+    // $preference->shipments = $shipments;
 
-    $products[] = $item
-}
+    // Crea un ítem en la preferencia
 
+    foreach ($cart as $c) {
+        $item = new MercadoPago\Item();
 
+        $item->title = $c->product->name;
+        $item->quantity = $c->quantity;
+        $item->unit_price = $c->total;
+        $item->picture_url = Storage::url($c->product->photo);
 
-$preference->items = $products;
-$preference->save();
+        $products[] = $item;
+    }
 
+    $preference->back_urls = [
+        'success' => Request::root(),
+        'failure' => Request::root() . '/my-cart',
+        'pending' => Request::root(),
+    ];
 
-@endphp
+    $preference->auto_return = 'approved';
 
+    $preference->items = $products;
+    $preference->save();
 
-@php
-    $total = 0;
-@endphp
+    @endphp
     <div class="container my-5">
         <h2 class="text-center my-5">Mi carrito</h2>
         <table class="table">
@@ -63,15 +72,12 @@ $preference->save();
                             </form>
                         </td>
                     </tr>
-                    @php
-                        $total += ($item->quantity * $item->total);
-                    @endphp
                 @endforeach
             </tbody>
         </table>
 
         <div class="row">
-            @if ($cart->count() > 0)
+            {{-- @if ($cart->count() > 0)
             <div class="col-sm-10">
                 <p class="text-end mt-3"><span class="fw-bold fs-5">Total: </span>${{ $total }}</p>
             </div>
@@ -81,13 +87,13 @@ $preference->save();
                     @method('POST')
                     <input type="hidden" name="products" value="{{ $cart }}">
                     <input type="hidden" name="total" value="{{ $total }}">
-                    {{--<button type="submit" class="btn btn-warning">
+                    <button type="submit" class="btn btn-warning">
                         Finalizar compra
-                    </button>--}}
-                    <div class="cho-container"></div>
+                    </button>
                 </form>
             </div>
-            @endif
+            @endif --}}
+            <div class="cho-container"></div>
         </div>
 
         <div class="row g-3">
@@ -96,24 +102,22 @@ $preference->save();
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-    
+
     <script>
         // Agrega credenciales de SDK
-        const mp = new MercadoPago("{{config('services.mercadopago.key')}}", {
-          locale: "es-AR",
+        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
+            locale: "es-AR",
         });
-      
+
         // Inicializa el checkout
         mp.checkout({
-          preference: {
-            id: '{{ $preference->id }}',
-          },
-          render: {
-            container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
-            label: "Pagar", // Cambia el texto del botón de pago (opcional)
-          },
+            preference: {
+                id: '{{ $preference->id }}',
+            },
+            render: {
+                container: ".cho-container", // Indica el nombre de la clase donde se mostrará el botón de pago
+                label: "Pagar", // Cambia el texto del botón de pago (opcional)
+            },
         });
-      </script>
-  
-
+    </script>
 @endsection
