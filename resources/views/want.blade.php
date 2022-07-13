@@ -396,6 +396,8 @@
                 location = "{{url('/home')}}";
             })
         }, false);
+
+       
     </script>
 
     <script src="js/custom.js"></script>
