@@ -19,6 +19,10 @@
      <a class="bt btn-success mt-3 mb-3" href="{{ route('users.excel') }}">
         Exportar Tabla
     </a>
+    <a class="bt btn-danger mt-3 mb-3" href="{{ route('users.pdf') }}">
+        Exportar Tabla en PDF
+    </a>
+
     <div>
         <table class="table">
             <thead class="table-dark">

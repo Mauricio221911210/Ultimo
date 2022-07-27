@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductController extends Controller
 {
@@ -36,6 +37,16 @@ class ProductController extends Controller
 
     public function exportExcelPr(){
         return Excel::download(new ProvidersExport, 'Provider-list.xlsx');
+    }
+
+    public function exportPDF(){
+        $products = Product::all();
+
+        view()->share('products.download',$products);
+ 
+         $pdf = PDF::loadView('products.download', ['products' => $products]);
+ 
+         return $pdf->download('products-list.pdf');
     }
 
 

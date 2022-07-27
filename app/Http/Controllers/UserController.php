@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -15,6 +16,17 @@ class UserController extends Controller
         $roles = Role::all();
         return view('users.index', compact('users','roles'));
     }
+
+    public function exportPDF(){
+        $users = User::all();
+
+        view()->share('users.download',$users);
+ 
+         $pdf = PDF::loadView('users.download', ['users' => $users]);
+ 
+         return $pdf->download('users-list.pdf');
+    }
+
 
 
 
