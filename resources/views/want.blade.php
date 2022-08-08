@@ -261,18 +261,18 @@
                  </form> --}}
                     <!------>
                     <div class="cform" id="contact-form">
-                        <form action="{{ route('contactanos.store') }}" method="POST">
+                        <form action="{{ route('contactanos.store') }}" method="POST" id="formulario">
                             @csrf
                             <div class="form-group">
                                 <label class="input-group-text"> Nombre: </label>
-                                <input type="text" name="name" class="form-control">
+                                <input type="text" name="name" id="name" class="form-control">
                             </div>
                             @error('name')
                                 <p><strong>{{ $message }}</strong></p>
                             @enderror
                             <div class="form-group">
                                 <label class="input-group-text"> Correo : </label>
-                                <input type="text" name="correo" class="form-control">
+                                <input type="text" name="correo" id="correo" class="form-control">
                                 @error('correo')
                                     <p><strong>{{ $message }}</strong></p>
                                 @enderror
@@ -317,7 +317,7 @@
                             <ul class="social-network social-circle">
                                 <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a>
                                 </li>
-                                <li><a href="#" class="icoFacebook" title="Facebook"><i
+                                <li><a href="https://www.facebook.com/Joduma-100989855844576" class="icoFacebook" title="Facebook"><i
                                             class="fa fa-facebook"></i></a></li>
                                 <li><a href="#" class="icoTwitter" title="Twitter"><i
                                             class="fa fa-twitter"></i></a></li>
@@ -333,14 +333,14 @@
                     <div class="col-md-12">
                         <div class="aligncenter">
                             <p>
-                                &copy; Frefrigel 2021-2022
+                                &copy; Joduma 2021-2022
                             </p>
                             <div class="credits">
 
                                 <a
                                     href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">Frefrigel
                                     2021-2022</a> by <a
-                                    href="https://www.youtube.com/channel/UCDH0DJaVLkCDtl_YN9hhByw/featured?view_as=subscriber">ProOnliPc</a>
+                                    href="https://www.facebook.com/Joduma-100989855844576">Joduma</a>
                             </div>
                         </div>
                     </div>
@@ -402,7 +402,28 @@
 
     <script src="js/custom.js"></script>
     <script src="contactform/contactform.js"></script>
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("formulario").addEventListener('submit', validarFormulario); 
+});
+
+function validarFormulario(evento) {
+  evento.preventDefault();
+  var name = document.getElementById('name').value;
+  if(name.length == 0) {
+    alert('El Nombre no es Valido');
+    return;
+  }
+  var correo = document.getElementById('correo').value;
+  if(correo.length == 0) {
+    alert('El correo no es Valido');
+    return;
+  }
+  this.submit();
+}
+    </script>
 
 </body>
 
 </html>
+

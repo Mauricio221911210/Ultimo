@@ -6,14 +6,14 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body border-top border-2 border-dark">
-                <form action="{{ route('user.store') }}" method="post" class="">
+                <form action="{{ route('user.store') }}" method="post" class="" id="formulario" >
                     @csrf
 
                     <div class="row">
                         <div class="col-sm-12 col-lg-6 mb-3">
                             <div class="form-floating">
                                 <input
-                                    required
+                                   
                                     type="text"
                                     class="form-control ps-4"
                                     name="name"
@@ -26,7 +26,7 @@
                         <div class="col-sm-12 col-lg-6 mb-3">
                             <div class="form-floating">
                                 <input
-                                required
+                                
                                 type="text"
                                 class="form-control ps-4"
                                 name="lastname"
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-floating mb-3">
-                        <select required class="form-control ps-4" name="role_id" id="roleInput">
+                        <select  class="form-control ps-4" name="role_id" id="roleInput">
                             <option value="" selected disabled>--Selecciona--</option>
                             @foreach ($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->nombre }}</option>
@@ -49,7 +49,7 @@
 
                     <div class="form-floating mb-3">
                         <input
-                            required
+                           
                             type="email"
                             class="form-control ps-4"
                             name="email"
@@ -60,7 +60,7 @@
 
                     <div class="form-floating mb-3">
                         <input
-                            required
+                            
                             type="password"
                             class="form-control ps-4"
                             name="password"
@@ -83,3 +83,37 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("formulario").addEventListener('submit', validarFormulario); 
+});
+
+function validarFormulario(evento) {
+  evento.preventDefault();
+  var nameInput = document.getElementById('nameInput').value;
+  if(nameInput.length == 0) {
+    alert('No has escrito nada en el usuario');
+    return;
+  }
+  var lastNameInput = document.getElementById('lastNameInput').value;
+  if(lastNameInput.length == 0) {
+    alert('No has escrito nada en Apellido');
+    return;
+  }
+
+  var passwordInput = document.getElementById('passwordInput').value;
+  if (passwordInput.length < 6) {
+    alert('La clave no es válida');
+    return;
+  }
+  if(passwordInput.length == 0) {
+    alert('No has escrito nada en la clave');
+    return;
+  }
+  this.submit();
+}
+
+
+  </script>

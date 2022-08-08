@@ -8,26 +8,26 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('provider.store') }}" method="post">
+                <form action="{{ route('provider.store') }}" method="post" id="formulario">
                     @csrf
                     <div class="form-group has-success">
                         <label for="form-label mt-4" for="inputValid">Nombre de proveedor </label>
-                        <input required type="text" class="form-control" name="name" value="{{ old('name') }}">
+                        <input  type="text" class="form-control" name="name" id="name" value="{{ old('name') }}">
                         {!! $errors->first('name', '<small>:message</small>') !!}
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nombre del Encargado</label>
-                        <input required type="text" class="form-control" name="contact" value="{{ old('contact') }}">
+                        <input  type="text" class="form-control" name="contact" id="contact" value="{{ old('contact') }}">
                         {!! $errors->first('lastname', '<small>:message</small>') !!}
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Telefono</label>
-                        <input required type="text" class="form-control" name=" phone" value="{{ old(' phone') }}">
+                        <input  type="text" class="form-control" name=" phone" id="phone" value="{{ old(' phone') }}">
                         {!! $errors->first('lastname', '<small>:message</small>') !!}
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Dirección </label>
-                        <input required type="text" class="form-control" name="address" value="{{ old('address') }}">
+                        <input  type="text" class="form-control" name="address" id="address" value="{{ old('address') }}">
                         {!! $errors->first('username', '<small>:message</small>') !!}
                     </div>
 
@@ -43,3 +43,36 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+     document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("formulario").addEventListener('submit', validarFormulario);
+    });
+
+    function validarFormulario(evento) {
+        evento.preventDefault();
+        var name = document.getElementById('name').value;
+        if (name.length == 0) {
+            alert('No has escrito un nombre valido');
+            return;
+        }
+        var contact = document.getElementById('contact').value;
+        if (contact.length == 0) {
+            alert('El nombre del Contacto no es valido');
+            return;
+        }
+        var phone = document.getElementById('phone').value;
+        if (phone.length == 0) {
+            alert('No has escrito un numero de Telefono valido');
+            return;
+        }
+        var address = document.getElementById('address').value;
+        if (address.length == 0) {
+            alert('No has escrito una Direccion Valida ');
+            return;
+        }
+        this.submit();
+    }
+</script>
