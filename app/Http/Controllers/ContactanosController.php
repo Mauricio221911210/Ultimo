@@ -27,7 +27,7 @@ class ContactanosController extends Controller
         ]);
 
         $correo = new ContactanosMailable($request->all());
-       Mail::to('gp563207@gmail.com')->send($correo);
+       Mail::to('al221911210@gmail.com')->send($correo);
 
     return redirect()->route('contactanos.index')->with('info','Mensaje enviado');
     //return redirect()->route('want')->with('info','Mensaje enviado');

@@ -17,6 +17,7 @@
 <body>
     <div class="container py-5">
         <h5 class=" font-weight-bold">Lista de Proveedores</h5>
+        <p class="text-center" ><img src="{{asset('img/logoj.png')}}" ></p>
         <table class="table table-bordered mt-5">
             <thead>
                 <tr>
