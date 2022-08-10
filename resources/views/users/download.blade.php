@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+    
     <title>Frefrigel</title>
+    
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +18,9 @@
 
 <body>
     <div class="container py-5">
-        <h5 class=" font-weight-bold">Lista de Usuarios</h5>
+        <h5 class=" font-weight-bold" >Lista de Usuarios</h5>
+       <p class="text-center" ><img src="{{asset('img/logoj.png')}}" ></p>
+
         <table class="table table-bordered mt-5">
             <thead>
                 <tr>

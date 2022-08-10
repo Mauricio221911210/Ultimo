@@ -20,6 +20,7 @@
                         <a class="nav-link text-danger" href="{{ route('provider.index') }}">Proveedor</a>
                         <a class="nav-link text-danger" href="{{ route('user.index') }}">Clientes</a>
                         <a class="nav-link text-danger" href="{{route('pedidos.index')}}">Compras</a>
+                        <a class="nav-link text-danger" href="{{route('admin')}}">Registros</a>
                     @endif
                     <li class="nav-item">
                         <span class="nav-link  text-danger">{{ Auth::user()->name }}</span>

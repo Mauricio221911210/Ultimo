@@ -56,6 +56,7 @@
                                         <td id='text'>{{ json_decode($item->product)->name }}</td>
                                         <td id='text'>{{ json_decode($item->product)->precio }}</td>
                                         <td id='text'>{{ json_decode($item)->quantity }}</td>
+                                        
                                       </tr>
                                     </tbody>
                                     @endforeach
